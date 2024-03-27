@@ -43,7 +43,7 @@ export const GET = async (request: NextRequest) => {
 };
 
 // export const POST = async (request: Request) => {
-//   const data: Tproduct = await request.json();
+//   const data: Tprofile = await request.json();
 //   const checkData = productSchema.safeParse(data);
 
 //   if (!checkData.success)
@@ -59,7 +59,7 @@ export const GET = async (request: NextRequest) => {
 // };
 
 // export const PUT = async (request: Request) => {
-//   const data: Tproduct = await request.json();
+//   const data: Tprofile = await request.json();
 //   const checkData = productSchema.safeParse(data);
 
 //   if (!checkData.success)

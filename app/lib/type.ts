@@ -11,7 +11,7 @@ import {
 export type IsignInSchema = z.infer<typeof signInSchema>;
 export type IsignUnSchema = z.infer<typeof signUpSchema>;
 export type Tprofile = z.infer<typeof profileSchema>;
-export type TproductFormSchema = z.infer<typeof productFormSchema>;
+export type TprofileFormSchema = z.infer<typeof productFormSchema>;
 export type TdetailParam = z.infer<typeof detailTypeScheme>;
 export type Tid = z.infer<typeof idSchema>;
 

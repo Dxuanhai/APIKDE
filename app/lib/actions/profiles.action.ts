@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 import prisma from "../primasdb";
 import { Tid, Tprofile } from "../type";
 
-// export const countProducts = async () => {
+// export const counTprofiles = async () => {
 //   try {
 //     const count = await prisma.product.count();
 //     return count;
@@ -83,7 +83,7 @@ export const fetchProfilesLimit = async (skip: number, take: number) => {
   }
 };
 
-// export const sortProduct = async (type: string, typeAnime: string) => {
+// export const sorTprofile = async (type: string, typeAnime: string) => {
 //   try {
 //     const products = await prisma.product.findMany({
 //       where: {
@@ -105,7 +105,7 @@ export const fetchProfilesLimit = async (skip: number, take: number) => {
 //     throw error;
 //   }
 // };
-// export const createProduct = async (data: Tproduct) => {
+// export const createProduct = async (data: Tprofile) => {
 //   try {
 //     await prisma.product.create({
 //       data: {
@@ -124,7 +124,7 @@ export const fetchProfilesLimit = async (skip: number, take: number) => {
 //   }
 // };
 
-// export const updateProduct = async (newData: Tproduct) => {
+// export const updateProduct = async (newData: Tprofile) => {
 //   try {
 //     const existingProduct = await prisma.product.findUnique({
 //       where: {
