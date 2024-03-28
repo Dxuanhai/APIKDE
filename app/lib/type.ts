@@ -2,8 +2,10 @@ import { z } from "zod";
 import {
   detailTypeScheme,
   idSchema,
+  permission,
   productFormSchema,
   profileSchema,
+  role,
   signInSchema,
   signUpSchema,
 } from "./validation";
@@ -11,6 +13,8 @@ import {
 export type IsignInSchema = z.infer<typeof signInSchema>;
 export type IsignUnSchema = z.infer<typeof signUpSchema>;
 export type Tprofile = z.infer<typeof profileSchema>;
+export type Tpermisson = z.infer<typeof permission>;
+export type Trole = z.infer<typeof role>;
 export type TprofileFormSchema = z.infer<typeof productFormSchema>;
 export type TdetailParam = z.infer<typeof detailTypeScheme>;
 export type Tid = z.infer<typeof idSchema>;
@@ -20,6 +24,7 @@ export interface Iuser {
   password: string;
   genders: string;
   fullName: string;
+  roleId?: number;
 }
 // export interface SlideData {
 //   id: number;

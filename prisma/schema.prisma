@@ -23,34 +23,48 @@ model Profile {
   password  String    @db.VarChar(100) 
   genders   String    @db.TinyText()
 
-  role Role? 
+  roleId  Int
+  role Role  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
-
+  @@index([roleId])
 }
 
 model Role {
   id        Int       @id @default(autoincrement())
   roleName  String    @db.VarChar(150) @unique
+ 
+  profiles Profile[]
+  permission RolesOnPermissions[]
+
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
-  profile Profile  @relation(fields: [profileId],references: [id], onDelete:NoAction)
-  profileId Int @unique
-  permissions Permissions[]
-
-  @@index([profileId])
 }
 
-model Permissions {
+model Permission {
   id        Int       @id @default(autoincrement())
-  permissonName      String    @db.VarChar(150) @unique
-  description DateTime  @default(now()) @map("created_at")
-  roleId  Int
-  role Role  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permissionName      String    @db.VarChar(150) @unique
+  description String @db.Text
 
-  @@index([roleId])
+
+  roles RolesOnPermissions[]
+
 }
+
+model RolesOnPermissions {
+  role        Role      @relation(fields: [roleId], references: [id] , onDelete: Cascade)
+  roleId     Int 
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  permissionId Int 
+
+ createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  @@id([roleId, permissionId])
+}
+
+
 
 model PermissonHistory {
   id        Int       @id @default(autoincrement())

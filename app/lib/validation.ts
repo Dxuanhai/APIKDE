@@ -46,6 +46,15 @@ export const profileSchema = z.object({
   createAt: z.string().optional(),
 });
 
+export const permission = z.object({
+  permissonName: z.string(),
+  description: z.string(),
+});
+
+export const role = z.object({
+  roleName: z.string(),
+});
+
 export const idSchema = z.object({
   id: z.number().int().positive(),
 });

@@ -25,5 +25,19 @@ export const POST = async (request: Request) => {
       status: 500,
     });
   }
-  return new NextResponse(JSON.stringify(user));
+  return new NextResponse(
+    JSON.stringify({
+      message: "create successful",
+      profile: {
+        id: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        genders: user.genders,
+        role: {
+          id: user.role?.id,
+          role: user.role?.roleName,
+        },
+      },
+    })
+  );
 };

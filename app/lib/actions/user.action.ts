@@ -40,6 +40,10 @@ export const createUser = async (data: Iuser) => {
         password: hashedPassword,
         genders: data.genders,
         fullName: data.fullName,
+        roleId: 1,
+      },
+      include: {
+        role: true,
       },
     });
 

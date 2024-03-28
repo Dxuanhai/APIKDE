@@ -2,21 +2,24 @@ import { revalidatePath } from "next/cache";
 import prisma from "../primasdb";
 import { Tid, Tprofile } from "../type";
 
-// export const counTprofiles = async () => {
-//   try {
-//     const count = await prisma.product.count();
-//     return count;
-//   } catch (error) {
-//     return error;
-//   }
-// };
+export const countProfiles = async () => {
+  try {
+    const count = await prisma.profile.count();
+    return count;
+  } catch (error) {
+    return error;
+  }
+};
 export const fetchProfiles = async () => {
   try {
     const products = await prisma.profile.findMany({
-      include: {
-        role: {
-          select: { roleName: true },
-        },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        genders: true,
+        createdAt: true,
+        role: true,
       },
     });
     return products;
@@ -157,30 +160,20 @@ export const fetchProfilesLimit = async (skip: number, take: number) => {
 //   }
 // };
 
-// export const deleteProduct = async (data: Tid, path?: string) => {
-//   try {
-//     const existingProduct = await prisma.product.findUnique({
-//       where: {
-//         id: data.id,
-//       },
-//     });
-//     if (!existingProduct) {
-//       return { message: "Product not found", status: 422 };
-//     }
-//     await prisma.anime.deleteMany({
-//       where: {
-//         productId: data.id,
-//       },
-//     });
-//     await prisma.product.delete({
-//       where: {
-//         id: data.id,
-//       },
-//     });
-//     if (path) revalidatePath(path);
-//     return { message: "Product deleted successfully", status: 200 };
-//   } catch (error) {
-//     console.error("Error delete product:", error);
-//     throw error;
-//   }
-// };
+export const deleteProfile = async (data: Tid) => {
+  try {
+    const existingProduct = await prisma.profile.findUnique({
+      where: {
+        id: data.id,
+      },
+    });
+    if (!existingProduct) {
+      return { message: "Product not found", status: 422 };
+    }
+
+    return { message: "Product deleted successfully", status: 200 };
+  } catch (error) {
+    console.error("Error delete product:", error);
+    throw error;
+  }
+};
