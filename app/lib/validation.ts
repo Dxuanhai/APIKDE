@@ -47,7 +47,7 @@ export const profileSchema = z.object({
 });
 
 export const permission = z.object({
-  permissonName: z.string(),
+  permissionName: z.string(),
   description: z.string(),
 });
 

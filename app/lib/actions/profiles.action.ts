@@ -28,41 +28,7 @@ export const fetchProfiles = async () => {
     throw error;
   }
 };
-// export const fetchTypeProducts = async (
-//   type: string,
-//   skip: number,
-//   take: number,
-//   typeAnime: string
-// ) => {
-//   try {
-//     const products = await prisma.product.findMany({
-//       skip,
-//       take,
-//       orderBy: {
-//         createdAt: "desc",
-//       },
-//       where: {
-//         type,
-//         animes: {
-//           some: {
-//             type: typeAnime,
-//           },
-//         },
-//       },
-//       include: {
-//         animes: {
-//           select: { type: true },
-//         },
-//       },
-//     });
-//     return products;
-//   } catch (error) {
-//     console.error("Error Fetch Product", error);
-//     throw error;
-//   } finally {
-//     await prisma.$disconnect();
-//   }
-// };
+
 export const fetchProfilesLimit = async (skip: number, take: number) => {
   try {
     const products = await prisma.profile.findMany({

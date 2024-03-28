@@ -5,5 +5,5 @@ export const GET = async () => {
   const quantity = await countProfiles();
   if (!quantity)
     return NextResponse.json({ message: "ERROR FROM SERVER", status: 500 });
-  return NextResponse.json("quantity");
+  return NextResponse.json(quantity);
 };

@@ -7,13 +7,13 @@ import {
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
-  const permission = await fetchRoles();
+  const roles = await fetchRoles();
 
-  if (!permission) {
+  if (!roles) {
     return NextResponse.json({ message: "not found" }, { status: 400 });
   }
 
-  return NextResponse.json(permission);
+  return NextResponse.json(roles);
 };
 
 export const POST = async (request: Request) => {

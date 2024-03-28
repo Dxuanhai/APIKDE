@@ -16,7 +16,7 @@ export const createPermisson = async (data: Tpermisson) => {
   try {
     await prisma.permission.create({
       data: {
-        permissionName: data.permissonName,
+        permissionName: data.permissionName,
         description: data.description,
       },
     });

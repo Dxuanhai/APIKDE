@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url);
-  const limit = searchParams.get("limit");
+  const limit = searchParams.get("take");
   const skip = searchParams.get("skip");
 
   let products: Tprofile[];
