@@ -6,7 +6,7 @@ import { signInSchema } from "@/app/lib/validation";
 
 export const POST = async (request: Request) => {
   try {
-    const body: IsignInSchema = await request.json();
+    const body = await request.json();
 
     // const parseBody = signInSchema.safeParse(body);
 
