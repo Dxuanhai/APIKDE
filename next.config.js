@@ -21,11 +21,6 @@ const nextConfig = {
       },
     ];
   },
-  async middleware(getDefaultMiddleware) {
-    return getDefaultMiddleware({
-      // Add other Next.js middleware options as needed
-    }).concat(require("./middleware"));
-  },
 };
 
 module.exports = nextConfig;
