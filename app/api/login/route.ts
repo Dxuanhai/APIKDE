@@ -8,10 +8,10 @@ export const POST = async (request: Request) => {
   try {
     const body: IsignInSchema = await request.json();
 
-    const parseBody = signInSchema.safeParse(body);
+    // const parseBody = signInSchema.safeParse(body);
 
-    if (!parseBody.success)
-      return NextResponse.json(parseBody.error.message, { status: 422 });
+    // if (!parseBody.success)
+    //   return NextResponse.json(parseBody.error.message, { status: 422 });
 
     const user = await prisma.profile.findUnique({
       where: {
@@ -36,22 +36,18 @@ export const POST = async (request: Request) => {
       );
     }
 
-    return NextResponse.json(
-      {
-        message: "login successful",
-        profile: {
-          id: user.id,
-          fullName: user.fullName,
-          email: user.email,
-          genders: user.genders,
-          role: {
-            id: user.role?.id,
-            role: user.role?.roleName,
-          },
+    return NextResponse.json({
+      profile: {
+        id: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        genders: user.genders,
+        role: {
+          id: user.role?.id,
+          role: user.role?.roleName,
         },
       },
-      { status: 200 }
-    );
+    });
   } catch (error) {
     console.error("Error retrieving user:", error);
     throw error;
