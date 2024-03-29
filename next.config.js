@@ -1,18 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "aniplexusa.com",
-      },
-    ],
-  },
   async headers() {
     return [
       {
-        // matching all API routes
         source: "/api/:path*",
+        destination: "https://apikde.vercel.app/api/:path*",
+
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
@@ -28,23 +21,12 @@ const nextConfig = {
         ],
       },
       {
-        // matching all other routes
-        source: "/:path*",
+        source: "/api/auth/:path*",
+        destination: "https://apikde.vercel.app/api/auth/:path*",
         headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          {
-            key: "Access-Control-Allow-Origin",
-            value: "http://localhost:5173",
-          },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET,POST" },
+          { key: "Access-Control-Allow-Headers", value: "*" },
         ],
       },
     ];
