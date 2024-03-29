@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import prisma from "../../../lib/primasdb";
+import prisma from "../../lib/primasdb";
 import { IsignInSchema } from "@/app/lib/type";
 import { signInSchema } from "@/app/lib/validation";
 
