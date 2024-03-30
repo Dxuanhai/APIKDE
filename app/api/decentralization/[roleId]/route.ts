@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../lib/primasdb";
+import { fetchProfiles } from "@/app/lib/actions/profiles.action";
 
 interface IParams {
   roleId?: string;
@@ -79,5 +80,21 @@ export const PUT = async (
     return new NextResponse(JSON.stringify({ message: "ERROR FROM SERVER" }), {
       status: 500,
     });
+  }
+};
+
+export const GET = async (request: Request) => {
+  try {
+    const users = await fetchProfiles();
+    if (!users) {
+      return NextResponse.json(
+        { message: "ERROR FROM SERVER" },
+        { status: 500 }
+      );
+    }
+    return NextResponse.json(users);
+  } catch (error) {
+    console.error("Error retrieving user:", error);
+    throw error;
   }
 };
