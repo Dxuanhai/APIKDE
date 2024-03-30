@@ -41,10 +41,10 @@ export const createUser = async (data: Iuser) => {
 
 export const login = async (data: Ilogin) => {
   try {
+    console.log("🚀  / login  / (data:", data.email);
     const user = await prisma.profile.findFirst({
       where: {
         email: data.email,
-        password: data.password,
       },
     });
     if (!user) return { message: "account not exist", status: 422 };
@@ -63,7 +63,7 @@ export const login = async (data: Ilogin) => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
-    return { data: userOuput, status: 200 };
+    return userOuput;
   } catch (error) {
     console.error("Error creating user:", error);
     throw error;
