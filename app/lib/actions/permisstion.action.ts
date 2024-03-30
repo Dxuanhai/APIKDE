@@ -20,7 +20,7 @@ export const createPermisson = async (data: Tpermisson) => {
         description: data.description,
       },
     });
-    return { message: "created product successfully", status: 200 };
+    return { message: "created successfully", status: 200 };
   } catch (error) {
     console.error("Error creating user:", error);
     throw error;

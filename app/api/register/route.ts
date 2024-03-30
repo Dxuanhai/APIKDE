@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createUser, checkUserExists } from "@/app/lib/actions/user.action";
+import { createUser, checkUserExists } from "@/app/lib/actions/auth.action";
 import { IsignInSchema, IsignUnSchema } from "@/app/lib/type";
 import { signUpSchema } from "@/app/lib/validation";
 
