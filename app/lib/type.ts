@@ -26,6 +26,10 @@ export interface Iuser {
   fullName: string;
   roleId?: number;
 }
+export interface Ilogin {
+  email: string;
+  password: string;
+}
 // export interface SlideData {
 //   id: number;
 //   urlImage: string;

@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
-import prisma from "../../lib/primasdb";
-import { IsignInSchema } from "@/app/lib/type";
 import { signInSchema } from "@/app/lib/validation";
+import { login } from "@/app/lib/actions/auth.action";
 
 export const POST = async (request: Request) => {
   try {
@@ -13,44 +11,14 @@ export const POST = async (request: Request) => {
     if (!parseBody.success)
       return NextResponse.json(parseBody.error.message, { status: 422 });
 
-    const user = await prisma.profile.findUnique({
-      where: {
-        email: body.email,
-      },
-      include: {
-        role: true,
-      },
-    });
-
-    if (!user)
+    const user = await login(parseBody.data);
+    if (!user) {
       return NextResponse.json(
-        { message: "account not exists" },
-        { status: 400 }
-      );
-
-    const passwordMatch = await bcrypt.compare(body.password, user.password);
-    if (!passwordMatch) {
-      return NextResponse.json(
-        { message: "Invalid email or password" },
-        { status: 400 }
+        { message: "ERROR FROM SERVER" },
+        { status: 500 }
       );
     }
-
-    return NextResponse.json(
-      {
-        profile: {
-          id: user.id,
-          fullName: user.fullName,
-          email: user.email,
-          genders: user.genders,
-          role: {
-            id: user.role?.id,
-            role: user.role?.roleName,
-          },
-        },
-      },
-      { status: 200 }
-    );
+    return NextResponse.json(user);
   } catch (error) {
     console.error("Error retrieving user:", error);
     throw error;
