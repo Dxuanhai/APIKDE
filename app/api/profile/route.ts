@@ -35,10 +35,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   if (!products) {
-    return NextResponse.json(
-      { message: "Invalid email or password" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "ERROR FROM SERVER" }, { status: 500 });
   }
 
   return NextResponse.json(products);
