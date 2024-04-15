@@ -40,21 +40,3 @@ export const GET = async (request: NextRequest) => {
 
   return NextResponse.json(products);
 };
-
-export const DELETE = async (request: Request) => {
-  const data: Tid = await request.json();
-  const checkData = idSchema.safeParse(data);
-  if (!checkData.success)
-    return NextResponse.json(
-      { message: "invalid type parameter" },
-      { status: 422 }
-    );
-
-  const profile = await deleteProfile(data);
-
-  if (!profile) {
-    return NextResponse.json({ message: "ERROR FROM SERVER" }, { status: 500 });
-  }
-
-  return NextResponse.json(profile);
-};
